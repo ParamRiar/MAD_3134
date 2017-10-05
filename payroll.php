@@ -1,9 +1,9 @@
 <?php
 class payroll{
+	var $result;
 	
-	function connection(){
-	
-$servername = "localhost";
+	function getresult(){
+		$servername = "localhost";
 $username = "root";
 $password = "";
 $dbname="C0710778_paramjeet";
@@ -14,18 +14,31 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-	}
-	function createDB(){
 	
-		
-$sql = "CREATE DATABASE C0710778_paramjeet";
+$sql = "SELECT  employeeId,employeeName, gender, BirthDate,Address,City,Province,Postalcode,Emailaddress,websitelink,Joiningdate,Annualbasicpay FROM employee_master";
+$this->result = $conn->query($sql);
+		return $this->result;
+}
+function connection(){
+$servername = "localhost";
+$username = "root";
+$password = "";
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+else{
+echo "Connected successfully";
+}
+
+// Create database
+/* $sql = "CREATE DATABASE C0710778_paramjeet";
 if ($conn->query($sql) === TRUE) {
-    echo "Database created successfully";
-}
-else
-{
-echo  "Error creating database: " . $conn->error;
-}
+       echo "Database created successfully";
+} */	
+
 
 	// use database
 $sql=" USE C0710778_paramjeet";
@@ -37,19 +50,7 @@ else
 {
 echo  "Error using database: " . $conn->error;
 }
-	}
-function createTB(){
-	$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname="C0710778_paramjeet";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+	
 	
 //create table
 
@@ -66,8 +67,8 @@ Annualbasicpay varchar(60))";
 {
 echo  "Error creating table : " . $conn->error;
 }
-}
 
+}
 function insert(){
 	$servername = "localhost";
 $username = "root";
@@ -122,11 +123,11 @@ if ($conn->connect_error) {
 	
 $sql = "SELECT  employeeId,employeeName, gender, BirthDate,Address,City,Province,Postalcode,
 Emailaddress,websitelink,Joiningdate,Annualbasicpay FROM Employee_Master";
-$result = $conn->query($sql);
+$this->result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
+if ($this->result->num_rows > 0) {
     // output data of each row
-    while($row = $result->fetch_assoc()) {
+    while($row = $this->result->fetch_assoc()) {
         echo "Id: " . $row["employeeId"]. " - Name: " . $row["employeeName"]. "-Gender: " . $row["gender"].  "-DOB: " .$row["BirthDate"].
 		 "-Address:" .$row["Address"]. "-City:" .$row["City"]. "-Province:" .$row["Province"]. "-Postalcode:" .$row["Postalcode"]. "-Emailaddress:" .$row["Emailaddress"].
 		"-Websitelink:" .$row["websitelink"]. "-Joiningdate:" .$row["Joiningdate"]. "-Annualbasicpay:" .$row["Annualbasicpay"].
@@ -134,14 +135,11 @@ if ($result->num_rows > 0) {
     }
 } else {
     echo "0 result";
-}}
-
+}
 }
 //$conn->close();
-$obj= new payroll;
-$obj->connection();
-$obj->insert();
-$obj->createTB();
-$obj->createDB();
-$obj->insert();
+}
+
+
+
 ?>
