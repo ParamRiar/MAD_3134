@@ -1,13 +1,15 @@
-
 <html>
 <head>
 <title>
 Home Page
 </title>
+<link rel="stylesheet" type="text/css" href="payroll.css"><br>
 <style>
 body
 {
-background-image: url("b1.jpg");
+background-image: url("p2.jpg");
+width: 100%;
+	height=100%;
 }
 form{
 	padding: 40px;
@@ -19,8 +21,18 @@ form{
 
 	
 </head>
+
 <body>
-<h1> Employee Information</h1><?php
+
+<nav class = "navigation">
+    <a href ="payroll2.php">Home </a>|
+	<a href="insert.html">Add New Employee</a>|
+    <a href ="login.html">Login Page</a>
+   
+	<br/><br/>
+</nav>
+<h2> Employee Information</h2>
+<?php
 include "payroll.php"; 
 
 	$servername = "localhost";
@@ -57,15 +69,15 @@ $result = $conn->query($sql);
 <th>Website</th>
 <th>Joiningdate</th>
 <th>AnnualPay</th>
-<th> </th>
-<th></th>
+<th>Edit </th>
+<th>Delete</th>
 </tr>
 
 <?php
 
 	if ($result->num_rows > 0) {
     	// output data of each row
-   	 while($row = $result->fetch_assoc()) {
+   	while($row = $result->fetch_assoc()) {
         
         echo "<tr>";
 		echo "<td>";
@@ -105,16 +117,14 @@ $result = $conn->query($sql);
 		echo "<td>";
         echo $row['Annualbasicpay'];
         echo "</td>";
-       echo "<td>";
-        echo "<input type='button' name ='Edit' value ='Edit'>";
-        echo "</td>";
-		echo "<td>";
-        echo "<input type='button' name ='Delete' value ='Delete'>";
-        echo "</td>";
+       echo "<td><a href=\"edit.php?employeeId=$row[employeeId]\">Edit</a></td>";
+	
+         echo "<td><a href='delete.php?employeeid=".$row['employeeId']."'>Delete</a></td>";
+       
         echo "</tr>";
     }
 	} else {
-   	 echo "0 results";
+   	echo "0 results";
 	}
 	
 	
@@ -124,5 +134,9 @@ $result = $conn->query($sql);
 	//$conn->close();
 ?>
 </table>
+
+
+
 </body>
 </html>
+

@@ -1,0 +1,18 @@
+{
+"firstName": "Prabh",
+"lastName": "Riar",
+"isAlive": true,
+"age": 22,
+
+"phoneNumbers":[
+{
+"type": "home",
+"number":"233-22-2222"},
+{
+"type": "office",
+"number":"233-22-2222"
+}
+],
+"childer":[],
+"spouse": null
+}

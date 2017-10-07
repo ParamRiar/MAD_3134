@@ -1,0 +1,55 @@
+<html>
+<head><title>
+	</title>
+	<link rel="stylesheet" type="text/css" href="payroll.css"><br>
+</head>
+<body>
+<h2>Add New Record</h2>
+<form action="insert.php" method="post" name="form1" >
+	<fieldset>
+    <legend>Employee Information</legend>
+	
+  
+        <label for="employeeName"> Name:</label>
+        <input type="text" name="employeeName" id="employeeName" required><br />
+    
+	   <label for="gender"> Gender:</label><br />
+	   
+             <input type="radio" name="gender" value="male" checked><label> Male</label><br />
+             <input type="radio" name="gender" value="female"><label> Female</label><br />
+             
+
+   <label for="BirthDate">DOB:</label>
+        <input type="date" name="BirthDate" id="BirthDate" required><br />
+    
+  <label for="Address">Address:</label>
+        <input type="text" name="Address" id="Address" required><br />
+
+  <label for="City">City:</label>
+        <input type="text" name="City" id="City" required><br />
+
+  <label for="Province">Province:</label>
+        <input type="text" name="Province" id="Province" required><br />
+
+  <label for="Postalcode">Postalcode:</label>
+        <input type="text" name="Postalcode" id="Postalcode" required><br />
+
+  <label for="Emailaddress">Emailaddress:</label>
+        <input type="email" name="Emailaddress" id="Emailaddress" required><br />
+
+  <label for="websitelink">Websitelink:</label>
+        <input type="text" name="websitelink" id="websitelink" required><br />
+
+  <label for="Joiningdate">Joiningdate:</label>
+        <input type="date" name="Joiningdate" id="Joiningdate" required><br />
+
+  <label for="Annualbasicpay">AnnualBasicpay:</label>
+        <input type="text" name="Annualbasicpay" id="Annualbasicpay" required><br />
+
+  <input type="submit" value="Submit" name="Submit">
+ <input type="reset" value="Reset">
+</fieldset> 
+</form>
+
+</body>
+</html>
